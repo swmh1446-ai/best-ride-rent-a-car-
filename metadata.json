@@ -1,0 +1,6 @@
+{
+  "name": "Best Ride Rent A Car",
+  "description": "Premium car rental company in Ras Al Khaimah, UAE offering luxury, comfort, and economy car rentals with free delivery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-red: #B33636;
+  --color-brand-ivory: #FFFDF7;
+  --color-brand-gold: #D9B66F;
+  --color-brand-bg: #F8F5EE;
+  --color-text-primary: #2B2B2B;
+  --color-text-secondary: #6B6B6B;
+  
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-heading: "Poppins", sans-serif;
+  
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-fade-in-up: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Base Styles */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--color-brand-bg);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Luxury Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.glass-panel-dark {
+  background: rgba(179, 54, 54, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(179, 54, 54, 0.1);
+}
+
+.glass-navbar {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(179, 54, 54, 0.10);
+}
+
+/* Luxury Card Shadow & Hover */
+.luxury-shadow {
+  box-shadow: 0 10px 30px -10px rgba(179, 54, 54, 0.08);
+}
+
+.luxury-hover-lift {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(179, 54, 54, 0.15);
+  border-color: rgba(217, 182, 111, 0.4); /* soft gold border */
+}
+
+/* Premium Typography Helper Classes */
+.heading-luxury {
+  font-family: var(--font-heading);
+  letter-spacing: -0.03em;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Selection Theme */
+::selection {
+  background-color: var(--color-brand-red);
+  color: #FFFFFF;
+}
+
+/* Custom Alert styling */
+.custom-alert {
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bestriderentacar.ae/sitemap.xml
