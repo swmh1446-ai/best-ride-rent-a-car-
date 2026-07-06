@@ -24,7 +24,7 @@ export default function BookingForm({ selectedVehicleId = '', onSuccess }: Booki
   } = useForm<BookingDetails>({
     defaultValues: {
       vehicleId: selectedVehicleId,
-      pickupLocation: 'Ras Al Khaimah – Free Delivery',
+      pickupLocation: 'Ras Al Khaimah',
       message: '',
     },
   });
@@ -32,18 +32,7 @@ export default function BookingForm({ selectedVehicleId = '', onSuccess }: Booki
   const onSubmit = (data: BookingDetails) => {
     // Retrieve vehicle name
     const selectedCar = VEHICLES.find((v) => v.id === data.vehicleId);
-    let vehicleName = 'Any Car';
-    if (data.vehicleId === 'elantra-2025') {
-      vehicleName = 'Hyundai Elantra 2025 Full Option';
-    } else if (data.vehicleId === 'venue-2024') {
-      vehicleName = 'Hyundai Venue Full Option';
-    } else if (data.vehicleId === 'ciaz-2024') {
-      vehicleName = 'Suzuki Ciaz 2024';
-    } else if (data.vehicleId === 'pegas-2024') {
-      vehicleName = 'Kia Pegas';
-    } else if (selectedCar) {
-      vehicleName = `${selectedCar.name} (${selectedCar.year})`;
-    }
+    const vehicleName = selectedCar ? `${selectedCar.name} (${selectedCar.year})` : 'Any Car';
 
     // Format WhatsApp query
     const waMessage = formatWhatsAppBookingMessage(data, vehicleName);
@@ -70,7 +59,7 @@ export default function BookingForm({ selectedVehicleId = '', onSuccess }: Booki
           Instant Booking Engine
         </h3>
         <p className="text-xs text-text-secondary mt-1 uppercase tracking-widest font-semibold">
-          Select your dates and vehicle. Get an instant quote via WhatsApp.
+          Select dates & vehicle. Get an instant quote via WhatsApp.
         </p>
       </div>
 
@@ -149,7 +138,7 @@ export default function BookingForm({ selectedVehicleId = '', onSuccess }: Booki
               className="w-full bg-brand-bg border border-brand-red/5 rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:ring-1 focus:ring-brand-red focus:border-brand-red transition-all appearance-none"
               {...register('pickupLocation', { required: 'Pickup location is required' })}
             >
-              <option value="Ras Al Khaimah – Free Delivery">Ras Al Khaimah – Free Delivery</option>
+              <option value="Ras Al Khaimah">Ras Al Khaimah (Free Delivery)</option>
               <option value="RAK Airport">RAK Airport</option>
               <option value="Nakheel, RAK">Nakheel, RAK</option>
               <option value="Al Hamra Mall, RAK">Al Hamra Mall, RAK</option>
@@ -167,10 +156,11 @@ export default function BookingForm({ selectedVehicleId = '', onSuccess }: Booki
               {...register('vehicleId', { required: 'Please select a car' })}
             >
               <option value="">-- Choose Car --</option>
-              <option value="elantra-2025">Hyundai Elantra 2025 Full Option</option>
-              <option value="venue-2024">Hyundai Venue Full Option</option>
-              <option value="ciaz-2024">Suzuki Ciaz 2024</option>
-              <option value="pegas-2024">Kia Pegas</option>
+              {VEHICLES.map((vehicle) => (
+                <option key={vehicle.id} value={vehicle.id}>
+                  {vehicle.name} (AED {vehicle.dailyPrice}/day)
+                </option>
+              ))}
             </select>
             {errors.vehicleId && (
               <p className="text-xs text-brand-red mt-1 font-medium">{errors.vehicleId.message}</p>
@@ -259,7 +249,7 @@ export default function BookingForm({ selectedVehicleId = '', onSuccess }: Booki
           id="booking-form-submit-btn"
           className="w-full bg-brand-red text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-sm hover:bg-brand-red/90 shadow-xl shadow-brand-red/20 transition-all mt-4 flex items-center justify-center space-x-2 cursor-pointer border-none"
         >
-          <span>Get Instant Quote on WhatsApp</span>
+          <span>Reserve Now via WhatsApp</span>
           <ExternalLink className="h-4 w-4" />
         </button>
       </form>
